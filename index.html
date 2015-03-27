@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
+<head>
+    <title>Process Scheduling</title>
+    <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+    <form action="javascript:void(0)">
+        Process: <input type="text" id="process" name="processName" maxlength="15" size="20">
+        Arrival Time: <input type="number" id="arrival" name="arrivalTime" maxlength="15" size="20">
+        Burst Time: <input type="number" id="burst" name="burstTime" maxlength="15" size="20">
+        Priority: <input type="number" id="priority" name="priority" maxlength="15" size="20">
+        <input type="submit" value="Add Process" onclick="addProcess()">
+        <input type="submit" value="Show List" onclick="showProcess()">
+    </form>
 
+    <div id="display"></div>
+
+<script>
+
+   var arrayOfProcess=[];
+   function addProcess(){
+       var getName=document.getElementById("process").value;
+       var getArrival=document.getElementById("arrival").value;
+       var getBurst=document.getElementById("burst").value;
+       var getPriority=document.getElementById("priority").value;
+       var processObj=new Process(getName,getArrival,getBurst,getPriority);
+        arrayOfProcess.push(processObj);
+       console.log(arrayOfProcess[0]);
+   }
+
+   function Process(name,arrival,burst,priority){
+       this.process=name;
+       this.arrival=arrival;
+       this.burst=burst;
+       this.priority=priority;
+   }
+
+
+   function showProcess(){
+       document.getElementById("display").innerHTML="";
+       document.getElementById("display").innerHTML="<table><tr><th>Name</th><th>Arrival Time</th><th>Burst Time</th><th>Priority</th></tr></table>";
+       for(var cnt=0;cnt<arrayOfProcess.length;cnt++){
+           document.getElementById("display").innerHTML+="<table><tr><td>"+arrayOfProcess[cnt].process+"</td>" +
+                   "<td>"+arrayOfProcess[cnt].arrival+"</td>" +
+                   "<td>"+arrayOfProcess[cnt].burst+"</td>" +
+                   "<td>"+arrayOfProcess[cnt].priority+"</td></tr></table>"
+
+       }
+   }
+
+
+
+</script>
 </body>
 </html>

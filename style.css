@@ -1,0 +1,14 @@
+table{
+    border: 1px solid;
+}
+
+th,td{
+    width: 150px;
+    border: 1px solid;
+    padding: 10px;
+    text-align: center;
+}
+
+div{
+    margin: 50px;
+}
