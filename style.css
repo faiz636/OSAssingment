@@ -1,14 +1,91 @@
+/**
+ * Created by Muhammad Faizan Khan on 21/03/2015.
+ */
+
+
+
+
+h2{
+    display: inline-block;
+    border-bottom: 2px solid cornflowerblue;
+    /*background-color: blue;*/
+}
+.triangle-right{
+    position: relative;
+    top: 5px;
+    left: 20px;
+    display: inline-block;
+    width: 0px;
+    height: 0px;
+    border-left: 30px solid #ccccff;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+}
+.triangle-right:hover{
+    border-left-color: #ccccaa;
+}
+.triangle-right:active{
+    border-left-color: #FF0000;
+    top: 7px;
+}
+fieldset {
+    width: 50%;
+    border: 1px solid #5555ff;//dcdcdc;
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    padding: 20px;
+}
+input{
+    margin: 10px 0;
+    padding: .5%;
+}
+legend {
+    background-color: #efefef;
+    border: 1px solid #5555ff;//dcdcdc;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+#invalid{
+    border: 1px solid #FF0000;
+    width: 200px;
+    padding: 5px;
+    border-radius: 12px;
+    color: #FF0000;
+    background-color: #ffbbbb;
+}
+
 table{
-    border: 1px solid;
+    background-color: #cccccc;
+    padding: 1%;
+    text-align: justify;
+    border-spacing: 5px;
 }
-
-th,td{
-    width: 150px;
-    border: 1px solid;
-    padding: 10px;
-    text-align: center;
+th{
+    background-color: lightslategray;
+    padding: 5px;
 }
-
-div{
-    margin: 50px;
+td {
+    background-color: dimgray;
+    padding: 5px;
+    color: #dcdcdc;
+    /*border: 2px solid #000000;*/
+}
+.l1{
+    margin-left: 20px;
+}
+.l2{
+    margin-left: 30px;
+}
+.l3{
+    margin-left: 40px;
+}
+.l4{
+    margin-left: 50px;
+}
+h1,h2{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

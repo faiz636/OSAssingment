@@ -1,0 +1,8 @@
+process obj
+    process name
+    arival time
+    brust time
+    priority
+
+no need of id at input use obj characteristics of form also no need of onclick at submit button
+i've rename some of the variables :)

@@ -3,54 +3,51 @@
 <head>
     <title>Process Scheduling</title>
     <link href="style.css" type="text/css" rel="stylesheet">
+    <script src="jquery-2.1.3.js"></script>
 </head>
 <body>
-    <form action="javascript:void(0)">
-        Process: <input type="text" id="process" name="processName" maxlength="15" size="20">
-        Arrival Time: <input type="number" id="arrival" name="arrivalTime" maxlength="15" size="20">
-        Burst Time: <input type="number" id="burst" name="burstTime" maxlength="15" size="20">
-        Priority: <input type="number" id="priority" name="priority" maxlength="15" size="20">
-        <input type="submit" value="Add Process" onclick="addProcess()">
-        <input type="submit" value="Show List" onclick="showProcess()">
-    </form>
+<h1>Process Management</h1>
 
-    <div id="display"></div>
+<h2 class="l1">SJF(Shortest job first) Sheduling<span id="sjf-show" class="triangle-right"></span></h2>
+<div id="sjf" class="l2" hidden="">
+    <div class="l3">
+        <h2>Add Process <span id="sjf-first" class="triangle-right"></span></h2>
+        <fieldset id="sjf-newprocess" class="l4" hidden="">
+            <legend>Process Data</legend>
+            <form action="javascript:void(0)" id="sjf-newProcessForm" method="get"
+                  onsubmit="addProcess(this.processName.value,this.arrivalTime.value,this.burstTime.value,this.priority.value)">
+                <label>Process <input type="text" name="processName" maxlength="15" size="20" style="margin-left: 45px"
+                                      placeholder="Enter name of process"></label><br>
+                <label>Arrival Time <input type="number" name="arrivalTime" maxlength="15" size="20"
+                                           style="margin-left: 10px" required=""></label><br>
+                <label>Burst Time <input type="number" name="burstTime" maxlength="15" size="20"
+                                         style="margin-left: 21px" required=""></label><br>
+                <label>Priority <input type="number" name="priority" maxlength="15" size="20" style="margin-left: 44px"></label><br>
+                <label><input type="submit" value="Add Process"></label><br>
+            </form>
+        </fieldset>
+    </div>
 
-<script>
-
-   var arrayOfProcess=[];
-   function addProcess(){
-       var getName=document.getElementById("process").value;
-       var getArrival=document.getElementById("arrival").value;
-       var getBurst=document.getElementById("burst").value;
-       var getPriority=document.getElementById("priority").value;
-       var processObj=new Process(getName,getArrival,getBurst,getPriority);
-        arrayOfProcess.push(processObj);
-       console.log(arrayOfProcess[0]);
-   }
-
-   function Process(name,arrival,burst,priority){
-       this.process=name;
-       this.arrival=arrival;
-       this.burst=burst;
-       this.priority=priority;
-   }
-
-
-   function showProcess(){
-       document.getElementById("display").innerHTML="";
-       document.getElementById("display").innerHTML="<table><tr><th>Name</th><th>Arrival Time</th><th>Burst Time</th><th>Priority</th></tr></table>";
-       for(var cnt=0;cnt<arrayOfProcess.length;cnt++){
-           document.getElementById("display").innerHTML+="<table><tr><td>"+arrayOfProcess[cnt].process+"</td>" +
-                   "<td>"+arrayOfProcess[cnt].arrival+"</td>" +
-                   "<td>"+arrayOfProcess[cnt].burst+"</td>" +
-                   "<td>"+arrayOfProcess[cnt].priority+"</td></tr></table>"
-
-       }
-   }
-
-
-
-</script>
+    <div class="l3">
+        <h2>View All Process<span class="triangle-right" id="sjf-second"></span></h2>
+        <table id="sjf-processList" class="l4" hidden="">
+            <thead>
+            <tr>
+                <th>Process Name</th>
+                <th>Arival Time</th>
+                <th>Brust Time</th>
+                <th>Priority</th>
+            </tr>
+            </thead>
+            <tbody id="sjf-processListBody">
+            </tbody>
+        </table>
+    </div>
+    <div class="l3">
+        <h2 id="sjf-result">Display Sheduling Result<span>    symbol</span></h2>
+    </div>
+</div>
+<script src="script.js"></script>
+<script src="jQscript.js"></script>
 </body>
 </html>
