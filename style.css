@@ -89,3 +89,17 @@ h1,h2{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+.outer{
+    width: 130px;
+    height: 100px;
+}
+.inner{
+    height: 130;
+    width: 50px;
+}
+.left{
+    margin-left: 0px;
+}
+.right{
+    margin-right: 0px;
+}

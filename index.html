@@ -44,12 +44,29 @@
         <tbody id="processListBody">
         </tbody>
     </table>
+    <!--
+    <table class="l2" onclick="listSortedProcess()">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>Arival Time</th>
+            <th>Burst Time</th>
+            <th>Priority</th>
+            <th>remaining</th>
+        </tr>
+        </thead>
+        <tbody id="sortedrefresh">
+        </tbody>
+    </table>
+    -->
 </div>
 
 <div id="sjf" class="l1">
     <h2 >SJF(Shortest job first) Sheduling Result<span id="sjf-result" class="triangle-right"></span></h2>
 
-    <div id="sjf-gantt-chart" hidden=""></div>
+    <div id="sjf-gantt-chart" >
+
+    </div>
     <table id="sjf-table" hidden="">
         <thead>
         <tr>
@@ -60,6 +77,18 @@
         </tr>
         </thead>
         <tbody id="sjf-table-result"></tbody>
+    </table>
+    <br>
+    <h2 onclick="sjf()">run</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>start</th>
+            <th>end</th>
+        </tr>
+        </thead>
+        <tbody id="runningStates"></tbody>
     </table>
 </div>
 <div id="fcfs" class="l1">
