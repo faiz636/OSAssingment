@@ -8,45 +8,93 @@
 <body>
 <h1>Process Management</h1>
 
-<h2 class="l1">SJF(Shortest job first) Sheduling<span id="sjf-show" class="triangle-right"></span></h2>
-<div id="sjf" class="l2" hidden="">
-    <div class="l3">
-        <h2>Add Process <span id="sjf-first" class="triangle-right"></span></h2>
-        <fieldset id="sjf-newprocess" class="l4" hidden="">
-            <legend>Process Data</legend>
-            <form action="javascript:void(0)" id="sjf-newProcessForm" method="get"
-                  onsubmit="addProcess(this.processName.value,this.arrivalTime.value,this.burstTime.value,this.priority.value)">
-                <label>Process <input type="text" name="processName" maxlength="15" size="20" style="margin-left: 45px"
-                                      placeholder="Enter name of process"></label><br>
-                <label>Arrival Time <input type="number" name="arrivalTime" maxlength="15" size="20"
-                                           style="margin-left: 10px" required=""></label><br>
-                <label>Burst Time <input type="number" name="burstTime" maxlength="15" size="20"
-                                         style="margin-left: 21px" required=""></label><br>
-                <label>Priority <input type="number" name="priority" maxlength="15" size="20" style="margin-left: 44px"></label><br>
-                <label><input type="submit" value="Add Process"></label><br>
-            </form>
-        </fieldset>
-    </div>
-
-    <div class="l3">
-        <h2>View All Process<span class="triangle-right" id="sjf-second"></span></h2>
-        <table id="sjf-processList" class="l4" hidden="">
-            <thead>
-            <tr>
-                <th>Process Name</th>
-                <th>Arival Time</th>
-                <th>Brust Time</th>
-                <th>Priority</th>
-            </tr>
-            </thead>
-            <tbody id="sjf-processListBody">
-            </tbody>
-        </table>
-    </div>
-    <div class="l3">
-        <h2 id="sjf-result">Display Sheduling Result<span>    symbol</span></h2>
-    </div>
+<!--Add Process-->
+<div class="l1">
+    <h2>Add Process <span id="addProcess" class="triangle-right"></span></h2>
+    <fieldset id="newprocess" class="l2" hidden="">
+        <legend>Process Data</legend>
+        <form action="javascript:void(0)" id="newProcessForm" method="get"
+              onsubmit="addProcess(this.processName.value,this.arrivalTime.value,this.burstTime.value,this.priority.value)">
+            <label>Process <input type="text" name="processName" maxlength="15" size="20" style="margin-left: 45px" required=""
+                                  placeholder="Enter name of process"></label><br>
+            <label>Arrival Time <input type="number" name="arrivalTime" maxlength="15" size="20"
+                                       style="margin-left: 10px" required=""></label><br>
+            <label>Burst Time <input type="number" name="burstTime" maxlength="15" size="20"
+                                     style="margin-left: 21px" required=""></label><br>
+            <label>Priority <input type="number" name="priority" maxlength="15" size="20"
+                                   style="margin-left: 44px"></label><br>
+            <label><input type="submit" value="Add Process"></label><br>
+        </form>
+        <div id="invalid" hidden="hidden">invalid limit or credit</div>
+    </fieldset>
 </div>
+
+<!--List Process-->
+<div class="l1">
+    <h2>View All Process<span class="triangle-right" id="viewProcess"></span></h2>
+    <table id="processList" class="l2" hidden="">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>Arival Time</th>
+            <th>Burst Time</th>
+            <th>Priority</th>
+        </tr>
+        </thead>
+        <tbody id="processListBody">
+        </tbody>
+    </table>
+</div>
+
+<div id="sjf" class="l1">
+    <h2 >SJF(Shortest job first) Sheduling Result<span id="sjf-result" class="triangle-right"></span></h2>
+
+    <div id="sjf-gantt-chart" hidden=""></div>
+    <table id="sjf-table" hidden="">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>Response time</th>
+            <th>waiting time</th>
+            <th>turnaround time</th>
+        </tr>
+        </thead>
+        <tbody id="sjf-table-result"></tbody>
+    </table>
+</div>
+<div id="fcfs" class="l1">
+    <h2 >FCFS() Sheduling Result<span id="fcfs-result" class="triangle-right"></span></h2>
+
+    <div id="fcfs-gantt-chart" hidden=""></div>
+    <table id="fcfs-table" hidden="">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>Response time</th>
+            <th>waiting time</th>
+            <th>turnaround time</th>
+        </tr>
+        </thead>
+        <tbody id="fcfs-table-result"></tbody>
+    </table>
+</div>
+<div id="rr" class="l1">
+    <h2 >round robin Sheduling Result<span id="rr-result" class="triangle-right"></span></h2>
+
+    <div id="rr-gantt-chart" hidden=""></div>
+    <table id="rr-table" hidden="">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>Response time</th>
+            <th>waiting time</th>
+            <th>turnaround time</th>
+        </tr>
+        </thead>
+        <tbody id="rr-table-result"></tbody>
+    </table>
+</div>
+
 <script src="script.js"></script>
 <script src="jQscript.js"></script>
 </body>

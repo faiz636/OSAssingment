@@ -19,13 +19,16 @@ function addProcess(name, arrivalTime, burstTime, priority) {
 //    check for invalid entries
     if (arrivalTime < 0 || burstTime < 0 || priority < 0) {
         //UI work reamining
+        $("#invalid").slideDown();
         return false;
     }
     var processObj = new Process(name, arrivalTime, burstTime, priority);
     //UI work reamining
     processArray.push(processObj);
     addProcessToList(processObj);
-    document.getElementById("sjf-newProcessForm").reset();
+    $("#invalid").slideUp();
+    $("#newprocess").slideToggle("slow");
+    document.getElementById("newProcessForm").reset();
 //    console.log(arrayOfProcess[0]);
 }
 
@@ -36,7 +39,7 @@ function addProcessToList(obj) {
         "<td>" + obj.burstTime + "</td>" +
         "<td>" + obj.priority + "</td>" +
         "</tr>";
-    document.getElementById("sjf-processListBody").innerHTML += x;
+    document.getElementById("processListBody").innerHTML += x;
 }
 
 
