@@ -110,8 +110,21 @@
 <div id="rr" class="l1">
     <h2 >round robin Sheduling Result<span id="rr-result" class="triangle-right"></span></h2>
 
-    <div id="rr-gantt-chart" hidden=""></div>
-    <table id="rr-table" hidden="">
+    <br>
+    <h2 onclick="rr()" class="rr-run" id="rr-runner" hidden="">run</h2>
+    <div id="rr-gantt-chart" class="rr-run" hidden=""></div>
+    <br>
+    <table class="rr-run" hidden="">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>start</th>
+            <th>end</th>
+        </tr>
+        </thead>
+        <tbody id="RRrunningStates"></tbody>
+    </table>
+    <table id="rr-table" class="rr-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
@@ -122,10 +135,13 @@
         </thead>
         <tbody id="rr-table-result"></tbody>
     </table>
+<!---->
+
 </div>
 
 <script src="script.js"></script>
 <script src="jQscript.js"></script>
 <script src="SJF.js"></script>
+<script src="RR.js"></script>
 </body>
 </html>

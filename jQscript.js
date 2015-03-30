@@ -8,14 +8,14 @@ $(document).ready(function(){
 //        $("#sjf-table").slideToggle("slow");
 //        console.log("click");
     });
+    $("#rr-result").click(function() {
+        $(".rr-run").slideToggle("slow");
+//        $("#rr-gantt-chart").slideToggle("slow");
+//        $("#rr-table").slideToggle("slow");
+    });
     $("#fcfs-result").click(function() {
         $("#fcfs-gantt-chart").slideToggle("slow");
         $("#fcfs-table").slideToggle("slow");
-        console.log("click");
-    });
-    $("#rr-result").click(function() {
-        $("#rr-gantt-chart").slideToggle("slow");
-        $("#rr-table").slideToggle("slow");
 //        console.log("click");
     });
     $("#addProcess").click(function() {
