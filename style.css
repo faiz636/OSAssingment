@@ -15,8 +15,8 @@ h2{
     top: 5px;
     left: 20px;
     display: inline-block;
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-left: 30px solid #ccccff;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
@@ -30,7 +30,8 @@ h2{
 }
 fieldset {
     width: 50%;
-    border: 1px solid #5555ff;//dcdcdc;
+    border: 1px solid #5555ff;
+/*//dcdcdc;*/
     background-color: #dcdcdc;
     border-radius: 10px;
     padding: 20px;
@@ -41,7 +42,8 @@ input{
 }
 legend {
     background-color: #efefef;
-    border: 1px solid #5555ff;//dcdcdc;
+    border: 1px solid #5555ff;
+/*//dcdcdc;*/
     border-radius: 10px;
     padding: 10px 20px;
     text-align: left;
@@ -89,17 +91,59 @@ h1,h2{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-.outer{
-    width: 130px;
-    height: 100px;
+.contain{
+    width: 85px;
+    height: 50px;
+    display: inline-block;
+    /*border:solid medium darkorchid;*/
 }
-.inner{
-    height: 130;
-    width: 50px;
+.box{
+    display: inline-block;
+    width: 75px;
+    height: 20px;
+    padding: 5px;
+    text-align: center;
 }
 .left{
-    margin-left: 0px;
+    display: inline-block;
+    /*margin-left: 0;*/
+    height: 20px;
+    width: 20px;
+    float: left;
 }
 .right{
-    margin-right: 0px;
+    display: inline-block;
+    margin-right: 0;
+    height: 20px;
+    width: 20px;
+    float: right;
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.green{
+    background-color: green;
+}
+#sjf-gantt-chart{
+    /*height: 80px;*/
+    /*width: 400px;*/
+    /*background-color: darkgray;*/
+
+}
+#sfj-runner{
+    background-color: #ccccff;
+    /*color: cornsilk;*/
+    display: none;
+    padding: 3px;
+    max-height: 30px;
+}
+#sfj-runner:hover{
+    background-color: #5555ff;
+    border-bottom-color: black;
+}
+#sfj-runner:active{
+    border-bottom-color: red;
 }

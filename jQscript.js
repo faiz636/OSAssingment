@@ -3,9 +3,10 @@
  */
 $(document).ready(function(){
     $("#sjf-result").click(function() {
-        $("#sjf-gantt-chart").slideToggle("slow");
-        $("#sjf-table").slideToggle("slow");
-        console.log("click");
+        $(".sjf-run").slideToggle("slow");
+//        $("#sjf-gantt-chart").slideToggle("slow");
+//        $("#sjf-table").slideToggle("slow");
+//        console.log("click");
     });
     $("#fcfs-result").click(function() {
         $("#fcfs-gantt-chart").slideToggle("slow");
@@ -15,7 +16,7 @@ $(document).ready(function(){
     $("#rr-result").click(function() {
         $("#rr-gantt-chart").slideToggle("slow");
         $("#rr-table").slideToggle("slow");
-        console.log("click");
+//        console.log("click");
     });
     $("#addProcess").click(function() {
         $("#newprocess").slideToggle("slow");

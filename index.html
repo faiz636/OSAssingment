@@ -25,7 +25,7 @@
                                    style="margin-left: 44px"></label><br>
             <label><input type="submit" value="Add Process"></label><br>
         </form>
-        <div id="invalid" hidden="hidden">invalid limit or credit</div>
+        <div id="invalid" hidden="hidden"></div>
     </fieldset>
 </div>
 
@@ -64,10 +64,11 @@
 <div id="sjf" class="l1">
     <h2 >SJF(Shortest job first) Sheduling Result<span id="sjf-result" class="triangle-right"></span></h2>
 
-    <div id="sjf-gantt-chart" >
-
-    </div>
-    <table id="sjf-table" hidden="">
+    <br>
+    <h2 onclick="sjf()" class="sjf-run" id="sfj-runner" hidden="">run</h2>
+    <div id="sjf-gantt-chart" class="sjf-run" hidden=""></div>
+    <br>
+    <table id="sjf-table" class="sjf-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
@@ -79,8 +80,7 @@
         <tbody id="sjf-table-result"></tbody>
     </table>
     <br>
-    <h2 onclick="sjf()">run</h2>
-    <table>
+    <table class="sjf-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
@@ -88,7 +88,7 @@
             <th>end</th>
         </tr>
         </thead>
-        <tbody id="runningStates"></tbody>
+        <tbody id="SJFrunningStates"></tbody>
     </table>
 </div>
 <div id="fcfs" class="l1">
@@ -126,5 +126,6 @@
 
 <script src="script.js"></script>
 <script src="jQscript.js"></script>
+<script src="SJF.js"></script>
 </body>
 </html>
