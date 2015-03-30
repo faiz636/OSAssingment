@@ -14,8 +14,9 @@ $(document).ready(function(){
 //        $("#rr-table").slideToggle("slow");
     });
     $("#fcfs-result").click(function() {
-        $("#fcfs-gantt-chart").slideToggle("slow");
-        $("#fcfs-table").slideToggle("slow");
+        $(".fcfs-run").slideToggle("slow");
+//        $("#fcfs-gantt-chart").slideToggle("slow");
+//        $("#fcfs-table").slideToggle("slow");
 //        console.log("click");
     });
     $("#addProcess").click(function() {

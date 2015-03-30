@@ -133,7 +133,7 @@ h1,h2{
     /*background-color: darkgray;*/
 
 }
-#sfj-runner,#rr-runner{
+#sfj-runner,#rr-runner,#fcfs-runner{
     background-color: #ccccff;
     /*color: cornsilk;*/
     display: none;

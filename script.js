@@ -34,7 +34,7 @@ function addProcess(name, arrivalTime, burstTime, priority) {
     }
     var l=processArray.length;
     for (var i = 0; i < l; i++) {
-        if (name == processArray[i]) {
+        if (name == processArray[i].name) {
             document.getElementById("invalid").innerHTML = "same name process already exist";
             selector.slideDown();
             return false;
@@ -56,8 +56,9 @@ function addProcessToList(obj) {
 }
 
 function refreshProcessList() {
+    var x = document.getElementById("processListBody");
+    x="";
     for (var cnt = 0; cnt < processArray.length; cnt++) {
-        var x = document.getElementById("processListBody");
         x.innerHTML += "<table><tr><td>" + processArray[cnt].name + "</td>" +
             "<td>" + processArray[cnt].arrivalTime + "</td>" +
             "<td>" + processArray[cnt].burstTime + "</td>" +

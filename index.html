@@ -94,8 +94,11 @@
 <div id="fcfs" class="l1">
     <h2 >FCFS() Sheduling Result<span id="fcfs-result" class="triangle-right"></span></h2>
 
-    <div id="fcfs-gantt-chart" hidden=""></div>
-    <table id="fcfs-table" hidden="">
+    <br>
+    <h2 onclick="fcfs()" class="fcfs-run" id="fcfs-runner" hidden="">run</h2>
+    <br>
+    <div id="fcfs-gantt-chart" class="fcfs-run" hidden=""></div>
+    <table id="fcfs-table" class="fcfs-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
@@ -105,6 +108,17 @@
         </tr>
         </thead>
         <tbody id="fcfs-table-result"></tbody>
+    </table>
+    <br>
+    <table class="fcfs-run" hidden="">
+        <thead>
+        <tr>
+            <th>Process Name</th>
+            <th>start</th>
+            <th>end</th>
+        </tr>
+        </thead>
+        <tbody id="FCFSrunningStates"></tbody>
     </table>
 </div>
 <div id="rr" class="l1">
