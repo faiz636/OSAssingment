@@ -23,6 +23,23 @@ $(document).ready(function(){
         $("#newprocess").slideToggle("slow");
     });
     $("#viewProcess").click(function() {
-        $("#processList").slideToggle("slow");
+        $(".processList").slideToggle("slow");
+    });
+    $("#save").click(function() {
+        $("#saveProcesses").slideToggle("slow");
+    });
+    $("#load").click(function() {
+        if(document.getElementById("loadProcesses").style.display=="none"){
+            if(localStorage.length>0){
+                var x="";
+                for(var i=0,len=localStorage.length;i<len;i++){
+                    x+="<option value="+localStorage.key(i)+">"+localStorage.key(i)+"</option>";
+                }
+                document.getElementById("optionList").innerHTML=x;
+            }else{
+
+            }
+        }
+        $("#loadProcesses").slideToggle("slow");
     });
 });

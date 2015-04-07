@@ -50,7 +50,7 @@ legend {
     text-transform: uppercase;
 }
 
-#invalid{
+#invalid,#saveError,#loadError{
     border: 1px solid #FF0000;
     width: 200px;
     padding: 5px;
@@ -133,17 +133,23 @@ h1,h2{
     /*background-color: darkgray;*/
 
 }
-#sfj-runner,#rr-runner,#fcfs-runner{
+#sfj-runner,#rr-runner,#fcfs-runner,#save,#load{
     background-color: #ccccff;
     /*color: cornsilk;*/
     display: none;
     padding: 3px;
     max-height: 30px;
 }
-#sfj-runner:hover{
+#sfj-runner:hover,#rr-runner:hover,#fcfs-runner:hover,#save:hover,#load:hover{
     background-color: #5555ff;
     border-bottom-color: black;
+    cursor: pointer;
+    cursor: hand;
 }
-#sfj-runner:active{
+#sfj-runner:active,#rr-runner:active,#fcfs-runner:active,#save:active,#load:active{
     border-bottom-color: red;
+}
+#loadProcesses,#saveProcesses{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

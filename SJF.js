@@ -3,16 +3,14 @@
  */
 
 //SJF scripting
-var time, processForShedular, currentRunningProcess, arrivedPionter, currentRunningProcessPointer, firstRun = true;
-var runningStateArray , currentRunningState, finish = false;
 
 function SJF_ShedulePremptive() {
     var l = processForShedular.length, currentBurst, reShedule = false;
-    if (firstRun) {
-        currentBurst = 10000;
-    } else {
-        currentBurst = currentRunningProcess.burstTime;
-    }
+//    if (firstRun) {
+//        currentBurst = 10000;
+//    } else {
+//        currentBurst = currentRunningProcess.burstTime;
+//    }
 
     for (i = arrivedPionter + 1; i < l; i++) {//check for more arrived processes
         if (processForShedular[i].arrivalTime <= time) {
@@ -24,8 +22,9 @@ function SJF_ShedulePremptive() {
             break;
         }
     }
-    if (currentRunningProcess.remainingTime < 1) {//check current process is finished
+    if (currentRunningProcess.remainingTime <= 0) {//check current process is finished
         reShedule = true;
+        currentRunningProcess.endTime=time;
         console.log("process finished");
     }
     if (reShedule) {//    reshedule if new process arrive
@@ -36,9 +35,10 @@ function SJF_ShedulePremptive() {
                 remaining.push(i);
             }
         }
-        console.log(remaining);
+//        console.log(remaining);
         if (remaining.length == 0 && arrivedPionter + 1 == processForShedular.length) {
             finish = true;
+            currentRunningProcess.endTime=time;
             currentRunningState.end = time;
             console.log("finished");
             return;
@@ -50,7 +50,7 @@ function SJF_ShedulePremptive() {
             } else {
                 currentRunningState.end = time;
             }
-            console.log("dummy");
+//            console.log("dummy");
             currentRunningProcess = new Process("EMPTY", 0, 1, 0);
             currentRunningProcessPointer = -1;
             currentRunningProcess.remainingTime = 1;
@@ -71,7 +71,7 @@ function SJF_ShedulePremptive() {
                 }
             }
         }
-        console.log("j:" + j);
+//        console.log("j:" + j);
 //        if (currentRunningProcessPointer == j) {
 //            return;
 //        } else {
@@ -90,30 +90,6 @@ function SJF_ShedulePremptive() {
     firstRun = false;
 }
 
-function RunningState(name) {
-    this.name = name;
-    this.start = time;
-//    this.end=0;
-}
-
-function getSortProcessByArrival() {
-    var x = [], y, l = processArray.length;
-    for (i = 0; i < l; i++) {
-        y = clone(processArray[i]);
-        y.remainingTime = y.burstTime;
-        x.push(y);
-    }
-    for (i = 0; i < l; i++) {
-        for (j = i + 1; j < l; j++) {
-            if (x[i].arrivalTime > x[j].arrivalTime) {
-                y = x[i];
-                x[i] = x[j];
-                x[j] = y;
-            }
-        }
-    }
-    processForShedular = x;
-}
 
 function sjf() {
     console.log("SJF started");
@@ -137,56 +113,15 @@ function sjf() {
             break;
         }
         time++;
-        console.log(time);
+//        console.log(time);
         currentRunningProcess.remainingTime--;
     }
-    console.log("sheduling end");
-    printRunningStates("SJFrunningStates");
+//    console.log("sheduling end");
+//    printRunningStates("SJFrunningStates");
     printGanntChart("sjf-gantt-chart");
+    printResult("sjf-table-result");
+    document.getElementById("sjf-turnaroundTime").innerHTML=(processForShedular.length/time).toFixed(2);
+
 }
 
-function printRunningStates(id) {
-    var x = "";
-    for (i = 0; i < runningStateArray.length; i++) {
-        x += "<tr><th>" + runningStateArray[i].name + "</th><th>" + runningStateArray[i].start + "</th><th>" + runningStateArray[i].end + "</th></tr>";
-    }
-    document.getElementById(id).innerHTML = x;
-}
 
-function printGanntChart(id) {
-    var color = ["red", "blue", "green"], first = true, x = " ", clas, l = runningStateArray.length;
-    console.log("print chart");
-    for (i = 0; i < l; i++) {
-        clas = color[(i % 3)];
-        if (first) {
-            console.log(clas);
-            x += "<span class='contain'><span class='box " + clas + "'>" + runningStateArray[i].name + "</span>" +
-                "<span class='left'>" + runningStateArray[i].start + "</span><span class='right'>" + runningStateArray[i].end + "</span></span>";
-            first = false;
-        } else {
-            console.log(clas);
-            x += "<span class='contain'><span class='box " + clas + "'>" + runningStateArray[i].name + "</span>" +
-                "<span class='right'>" + runningStateArray[i].end + "</span></span>";
-        }
-    }
-    document.getElementById(id).innerHTML = x;
-}
-
-/*
- function listSortedProcess() {
- getSortProcessByArrival();
- for (var cnt = 0; cnt < processForShedular.length; cnt++) {
- x = document.getElementById("sortedrefresh");
- x.innerHTML += "<table><tr><td>" + processForShedular[cnt].name + "</td>" +
- "<td>" + processForShedular[cnt].arrivalTime + "</td>" +
- "<td>" + processForShedular[cnt].burstTime + "</td>" +
- "<td>" + processForShedular[cnt].priority + "</td>" +
- "<td>" + processForShedular[cnt].remainingTime + "</td></tr></table>";
- }
- }
- */
-
-
-//processArray=JSON.parse(localStorage.process);
-//refreshProcessList();
-//processArray=JSON.parse(localStorage.p3);refreshProcessList();sjf();

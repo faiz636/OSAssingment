@@ -36,8 +36,11 @@ function rr() {
         console.log(time);
     }
     console.log("sheduling end");
-    printRunningStates("RRrunningStates");
+//    printRunningStates("RRrunningStates");
     printGanntChart("rr-gantt-chart");
+    printResult("rr-table-result");
+    document.getElementById("rr-turnaroundTime").innerHTML=(processForShedular.length/time).toFixed(2);
+
 }
 function getProcessClone() {
     var x = [], y, l = processArray.length;
@@ -76,6 +79,7 @@ function RR_Shedular() {
 
             if (beforNotFound) {
                 finish = true;
+                currentRunningProcess.endTime=time;
                 currentRunningState.end = time;
                 console.log("finished");
                 return;
@@ -86,95 +90,10 @@ function RR_Shedular() {
         firstRun = false;
     } else {
         currentRunningState.end = time;
+        currentRunningProcess.endTime=time;
+
     }
     currentRunningProcess = processForShedular[currentRunningProcessPointer];
     currentRunningState = new RunningState(currentRunningProcess.name);
     runningStateArray.push(currentRunningState);
 }
-
-/*
- //rr scripting
- var pending,pendingPointer;
- function rr() {
- console.log("RR started");
- if (processArray.length == 0) {
- console.log("nothing to run");
- return;
- }
- var quantum = Number(prompt("Enter Quantum Time(default:5)", "5"));
- if (quantum <= 0) {
- console.log("invalid Quantum Time re-try");
- return;
- }
- getProcessClone();
- time = 0;
- runningStateArray = [];
- pending= [];
- console.log("sheduling started");
- firstRun=true;
- finish = false;
- while (true) {
- RR_Shedular();
- if (finish) {
- break;
- }
- if (currentRunningProcess.remainingTime < quantum) {
- time += currentRunningProcess.remainingTime;
- currentRunningProcess.remainingTime = 0;
- } else {
- time += quantum;
- currentRunningProcess.remainingTime -= quantum;
- }
- console.log(time);
- }
- console.log("sheduling end");
- printRunningStates("RRrunningStates");
- printGanntChart("rr-gantt-chart");
- }
- function getProcessClone() {
- var x = [], y, l = processArray.length;
- for (var i = 0; i < l; i++) {
- y = clone(processArray[i]);
- y.remainingTime = y.burstTime;
- x.push(y);
- pending.push(i);
- }
- processForShedular = x;
- }
- function RR_Shedular() {
- var l = processForShedular.length, afterNotFound = true;
- if (firstRun) {
- currentRunningProcessPointer = pending[0];
- pendingPointer=0;
- } else {
- if(pendingPointer.length==0){
- finish = true;
- currentRunningState.end = time;
- console.log("finished");
- return;
- }
- console.log("reshedule");
- pendingPointer++;
- if(pendingPointer>pending.length){
- pendingPointer=0;
- }
- currentRunningProcessPointer=pending[pendingPointer];
- }
- if (firstRun) {
- firstRun = false;
- } else {
- currentRunningState.end = time;
- }
- currentRunningProcess = processForShedular[currentRunningProcessPointer];
- currentRunningState = new RunningState(currentRunningProcess.name);
- runningStateArray.push(currentRunningState);
- }
-
- for(i=1;i<runningStateArray.length;i++){
- if(runningStateArray[i].name==runningStateArray[i-1].name){
- runningStateArray[i].start=runningStateArray[i-1].start;
- //remove red box from arr
- }
- }
-
- */

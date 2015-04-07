@@ -24,12 +24,15 @@ function fcfs() {
             break;
         }
         time += currentRunningProcess.remainingTime;
-        console.log(time);
+//        console.log(time);
         currentRunningProcess.remainingTime = 0;
     }
     console.log("sheduling end");
-    printRunningStates("FCFSrunningStates");
+    printResult("fcfs-table-result");
+//    printRunningStates("FCFSrunningStates");
     printGanntChart("fcfs-gantt-chart");
+    document.getElementById("fcfs-turnaroundTime").innerHTML=(processForShedular.length/time).toFixed(2);
+
 }
 
 function FCFS_Shedular() {
@@ -47,6 +50,7 @@ function FCFS_Shedular() {
     if (currentRunningProcessPointer + 1 == processForShedular.length) {
         finish = true;
         currentRunningState.end = time;
+        currentRunningProcess.endTime=time;
         console.log("finished");
         return;
     }
@@ -55,18 +59,28 @@ function FCFS_Shedular() {
             firstRun = false;
         } else {
             currentRunningState.end = time;
+            currentRunningProcess.endTime=time;
         }
+        currentRunningProcess.endTime=time;
         console.log("dummy");
         currentRunningProcess = new Process("EMPTY", 0, 1, 0);
-        currentRunningProcessPointer = -1;
+//        currentRunningProcessPointer = -1;
         currentRunningProcess.remainingTime = 1;
         currentRunningState = new RunningState(currentRunningProcess.name);
         runningStateArray.push(currentRunningState);
 //            firstRun = false;
         return;
     }
-    if (arrivedPionter > currentRunningProcessPointer) {
+    if (arrivedPionter > currentRunningProcessPointer ) {
         currentRunningProcessPointer++;
+    }else{
+        for(var i=0;i<arrivedPionter;i++){
+            if(processForShedular[i].remainingTime>0){
+                currentRunningProcessPointer=i;
+                break;
+            }
+        }
+
     }
 
     if (firstRun) {
@@ -74,6 +88,7 @@ function FCFS_Shedular() {
     } else {
         currentRunningState.end = time;
     }
+    currentRunningProcess.endTime=time;
     currentRunningProcess = processForShedular[currentRunningProcessPointer];
     currentRunningState = new RunningState(currentRunningProcess.name);
     runningStateArray.push(currentRunningState);

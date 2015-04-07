@@ -15,7 +15,8 @@
         <legend>Process Data</legend>
         <form action="javascript:void(0)" id="newProcessForm" method="get"
               onsubmit="addProcess(this.processName.value,this.arrivalTime.value,this.burstTime.value,this.priority.value)">
-            <label>Process <input type="text" name="processName" maxlength="15" size="20" style="margin-left: 45px" required=""
+            <label>Process <input type="text" name="processName" maxlength="15" size="20" style="margin-left: 45px"
+                                  required=""
                                   placeholder="Enter name of process"></label><br>
             <label>Arrival Time <input type="number" name="arrivalTime" maxlength="15" size="20"
                                        style="margin-left: 10px" required=""></label><br>
@@ -32,7 +33,37 @@
 <!--List Process-->
 <div class="l1">
     <h2>View All Process<span class="triangle-right" id="viewProcess"></span></h2>
-    <table id="processList" class="l2" hidden="">
+
+    <div id="loadSave">
+        <h2 class="l2 processList" id="save" style="display: none">Save Process By Name</h2>
+        <h2 class="l2 processList" id="load" style="display: none">Load Process</h2>
+        <br class="processlist" hidden="">
+        <fieldset id="saveProcesses" class="l2" style="display: none">
+            <legend>Save Process</legend>
+            <form action="javascript:void(0)" id="saveProcessesForm" method="get"
+                  onsubmit="saveProcesses(this.saveByName.value)">
+                <label>Save By Name
+                    <input type="text" name="saveByName" maxlength="15" size="20" style="margin-left: 45px" required=""
+                           placeholder="Enter name"></label><br>
+                <label><input type="submit" value="Save"></label><br>
+            </form>
+            <div id="saveError" hidden="hidden"></div>
+        </fieldset>
+
+        <fieldset id="loadProcesses" class="l2" style="display: none">
+            <legend>Load Process</legend>
+            <form action="javascript:void(0)" id="loadProcessesForm" method="get"
+                  onsubmit="loadProcess(this.processName.value)">
+                <label>Load Processes
+                    <select name="processName" id="optionList" style="margin-left: 45px;width: 150px">
+
+                    </select></label><br>
+                <label><input type="submit" value="Load"></label><br>
+            </form>
+            <div id="loadError" hidden="hidden"></div>
+        </fieldset>
+    </div>
+    <table id="" class="l2 processList" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
@@ -62,100 +93,108 @@
 </div>
 
 <div id="sjf" class="l1">
-    <h2 >SJF(Shortest job first) Sheduling Result<span id="sjf-result" class="triangle-right"></span></h2>
+    <h2>SJF(Shortest job first) Sheduling Result<span id="sjf-result" class="triangle-right"></span></h2>
 
-    <br>
+    <br class="sjf-run" hidden="">
+
     <h2 onclick="sjf()" class="sjf-run" id="sfj-runner" hidden="">run</h2>
+
     <div id="sjf-gantt-chart" class="sjf-run" hidden=""></div>
-    <br>
+    <br class="sjf-run" hidden="">
     <table id="sjf-table" class="sjf-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
-            <th>Response time</th>
             <th>waiting time</th>
-            <th>turnaround time</th>
+            <!--<th>turnaround time</th>-->
         </tr>
         </thead>
         <tbody id="sjf-table-result"></tbody>
     </table>
-    <br>
-    <table class="sjf-run" hidden="">
-        <thead>
-        <tr>
-            <th>Process Name</th>
-            <th>start</th>
-            <th>end</th>
-        </tr>
-        </thead>
-        <tbody id="SJFrunningStates"></tbody>
-    </table>
+    <br class="sjf-run" hidden="">
+    <p class="sjf-run" hidden="">Turnaround time : <b id="sjf-turnaroundTime"></b></p>
+    <!--<table class="sjf-run" hidden="">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Process Name</th>-->
+            <!--<th>start</th>-->
+            <!--<th>end</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody id="SJFrunningStates">-->
+        <!--</tbody>-->
+    <!--</table>-->
 </div>
-<div id="fcfs" class="l1">
-    <h2 >FCFS() Sheduling Result<span id="fcfs-result" class="triangle-right"></span></h2>
 
-    <br>
+<div id="fcfs" class="l1">
+    <h2>FCFS Sheduling Result<span id="fcfs-result" class="triangle-right"></span></h2>
+
+    <br class="fcfs-run" hidden="">
+
     <h2 onclick="fcfs()" class="fcfs-run" id="fcfs-runner" hidden="">run</h2>
-    <br>
+    <br class="fcfs-run" hidden="">
+
     <div id="fcfs-gantt-chart" class="fcfs-run" hidden=""></div>
     <table id="fcfs-table" class="fcfs-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
-            <th>Response time</th>
             <th>waiting time</th>
-            <th>turnaround time</th>
         </tr>
         </thead>
         <tbody id="fcfs-table-result"></tbody>
     </table>
-    <br>
-    <table class="fcfs-run" hidden="">
-        <thead>
-        <tr>
-            <th>Process Name</th>
-            <th>start</th>
-            <th>end</th>
-        </tr>
-        </thead>
-        <tbody id="FCFSrunningStates"></tbody>
-    </table>
+    <br class="fcfs-run" hidden="">
+    <p class="fcfs-run" hidden="">Turnaround time : <b id="fcfs-turnaroundTime"></b></p>
+    <!--<table class="fcfs-run" hidden="">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Process Name</th>-->
+            <!--<th>start</th>-->
+            <!--<th>end</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody id="FCFSrunningStates"></tbody>-->
+    <!--</table>-->
 </div>
-<div id="rr" class="l1">
-    <h2 >round robin Sheduling Result<span id="rr-result" class="triangle-right"></span></h2>
 
-    <br>
+<div id="rr" class="l1">
+    <h2>round robin Sheduling Result<span id="rr-result" class="triangle-right"></span></h2>
+
+    <br class="rr-run" hidden="">
+
     <h2 onclick="rr()" class="rr-run" id="rr-runner" hidden="">run</h2>
+
     <div id="rr-gantt-chart" class="rr-run" hidden=""></div>
-    <br>
-    <table class="rr-run" hidden="">
-        <thead>
-        <tr>
-            <th>Process Name</th>
-            <th>start</th>
-            <th>end</th>
-        </tr>
-        </thead>
-        <tbody id="RRrunningStates"></tbody>
-    </table>
+    <br class="rr-run" hidden="">
+    <!--<table class="rr-run" hidden="">-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>Process Name</th>-->
+            <!--<th>start</th>-->
+            <!--<th>end</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody id="RRrunningStates"></tbody>-->
+    <!--</table>-->
     <table id="rr-table" class="rr-run" hidden="">
         <thead>
         <tr>
             <th>Process Name</th>
-            <th>Response time</th>
             <th>waiting time</th>
-            <th>turnaround time</th>
         </tr>
         </thead>
         <tbody id="rr-table-result"></tbody>
     </table>
-<!---->
+    <!---->
+    <p class="rr-run" hidden="">Turnaround time : <b id="rr-turnaroundTime"></b></p>
 
 </div>
 
-<script src="script.js"></script>
 <script src="jQscript.js"></script>
+<script src="script.js"></script>
 <script src="SJF.js"></script>
 <script src="RR.js"></script>
+<script src="FCFS.js"></script>
 </body>
 </html>
